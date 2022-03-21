@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build code test
-      run: docker --version
+      run: echo ${{ secrets.TEST }}
