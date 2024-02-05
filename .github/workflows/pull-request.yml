@@ -18,12 +18,12 @@
 #           branch: dev # The branch where you commit
 #           base: main # Don't forget to specify the right base branch here    
 
-name: Merge Master to All Branches
+name: Merge main to All Branches
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   merge:
@@ -33,14 +33,14 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Merge Master to All Branches
+    - name: Merge main to All Branches
       run: |
-        # Get the list of branches (excluding master)
-        branches=$(git branch -r | grep -v 'origin/master' | sed 's/origin\///')
+        # Get the list of branches (excluding main)
+        branches=$(git branch -r | grep -v 'origin/main' | sed 's/origin\///')
 
-        # Loop through each branch and merge master
+        # Loop through each branch and merge main
         for branch in $branches; do
           git checkout $branch
-          git pull origin master
+          git pull origin main
           git push origin $branch
         done
