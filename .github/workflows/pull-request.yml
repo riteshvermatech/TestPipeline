@@ -16,4 +16,4 @@ jobs:
           title: Auto Pull Request
           body: Auto-created Pull Request
           branch: dev # The branch where you commit
-          base: master # Don't forget to specify the right base branch here    
+          base: main # Don't forget to specify the right base branch here    
