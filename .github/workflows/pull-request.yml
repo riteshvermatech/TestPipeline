@@ -36,13 +36,11 @@ jobs:
     - name: Merge main to All Branches
       run: |
         # Get the list of branches (excluding main)
-        branches=$(git branch -r | grep 'origin/main' | sed 's/origin\///')
-        echo $branches
-        echo $(git branch -r | grep 'origin/main')
-        echo $(git branch -r )
-
+        #branches=$(git branch -r | grep 'origin/main' | sed 's/origin\///')
+        branches="dev,test"
         # Loop through each branch and merge main
         for branch in $branches; do
+          echo $branch
           git checkout $branch
           git pull origin main
           git push origin $branch
