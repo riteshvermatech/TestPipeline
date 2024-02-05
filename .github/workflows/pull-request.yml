@@ -43,7 +43,7 @@ jobs:
         ls -lrt
         for branch in $branches; do
           echo "$branch inside"
-          git checkout --track origin/$branch
+          git checkout -b $branch
           ls -lrt
           echo "check out done"
           git pull origin main
