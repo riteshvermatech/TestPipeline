@@ -56,14 +56,14 @@ jobs:
           # Create a branch for the pull request
           git checkout -b pr-branch-$branch
 
-          # Merge changes from master
-          git pull origin master
+          # Merge changes from main
+          git pull origin main
 
           # Push the changes and create a pull request
           git push origin pr-branch-$branch
 
           # Create pull request
-          gh pr create --base $branch --head pr-branch-$branch --title "Merge from master" --body "Automated pull request to merge changes from master."
+          gh pr create --base $branch --head pr-branch-$branch --title "Merge from main" --body "Automated pull request to merge changes from main."
 
 
         done
