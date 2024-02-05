@@ -1,19 +1,46 @@
-name: Pull Request Action
+# name: Pull Request Action
+# on:
+#   workflow_dispatch:
+
+# jobs:
+#   create-pull-request:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out repository code
+#         uses: actions/checkout@v2
+#       - name: Create Pull Request
+#         uses: peter-evans/create-pull-request@v3.10.1
+#         with:
+#           token: ${{ secrets.PULL_REQUEST_TOKEN }}
+#           commit-message: Auto Pull Request
+#           title: Auto Pull Request
+#           body: Auto-created Pull Request
+#           branch: dev # The branch where you commit
+#           base: main # Don't forget to specify the right base branch here    
+
+name: Merge Master to All Branches
+
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - master
 
 jobs:
-  create-pull-request:
+  merge:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.10.1
-        with:
-          token: ${{ secrets.PULL_REQUEST_TOKEN }}
-          commit-message: Auto Pull Request
-          title: Auto Pull Request
-          body: Auto-created Pull Request
-          branch: dev # The branch where you commit
-          base: main # Don't forget to specify the right base branch here    
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Merge Master to All Branches
+      run: |
+        # Get the list of branches (excluding master)
+        branches=$(git branch -r | grep -v 'origin/master' | sed 's/origin\///')
+
+        # Loop through each branch and merge master
+        for branch in $branches; do
+          git checkout $branch
+          git pull origin master
+          git push origin $branch
+        done
