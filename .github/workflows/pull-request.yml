@@ -56,12 +56,12 @@ jobs:
 
 
           # Create a branch for the pull request
-          git fetch
+          git pull
           git checkout -b pr-branch-$branch
 
           # Merge changes from main
           git pull origin main
-
+          git pull
           # Push the changes and create a pull request
           git push origin pr-branch-$branch
 
