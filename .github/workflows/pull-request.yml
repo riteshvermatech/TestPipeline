@@ -39,6 +39,8 @@ jobs:
         #branches=$(git branch -r | grep 'origin/main' | sed 's/origin\///')
         branches="dev test"
         # Loop through each branch and merge main
+        echo $pwd
+        ls -lrt
         for branch in $branches; do
           echo $branch
           git checkout $branch
