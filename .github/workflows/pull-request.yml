@@ -61,10 +61,10 @@ jobs:
 
           # Merge changes from main
           git pull origin main
-          git pull
+          
           # Push the changes and create a pull request
           git push origin pr-branch-$branch
-
+          git pull
           # Create pull request
           gh pr create --base $branch --head pr-branch-$branch --title "Merge from main" --body "Automated pull request to merge changes from main."
 
