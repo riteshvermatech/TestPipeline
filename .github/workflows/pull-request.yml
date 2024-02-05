@@ -56,7 +56,7 @@ jobs:
 
 
           # Create a branch for the pull request
-          git fetch
+          git pull
           git checkout -b pr-branch-$branch
 
           # Merge changes from main
