@@ -15,5 +15,5 @@ jobs:
           commit-message: Auto Pull Request
           title: Auto Pull Request
           body: Auto-created Pull Request
-          branch: master # The branch where you commit
-          base: dev # Don't forget to specify the right base branch here    
+          branch: dev # The branch where you commit
+          base: master # Don't forget to specify the right base branch here    
