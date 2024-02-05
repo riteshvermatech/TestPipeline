@@ -37,7 +37,7 @@ jobs:
       run: |
         # Get the list of branches (excluding main)
         #branches=$(git branch -r | grep 'origin/main' | sed 's/origin\///')
-        branches="dev,test"
+        branches="dev test"
         # Loop through each branch and merge main
         for branch in $branches; do
           echo $branch
