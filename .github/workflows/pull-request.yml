@@ -37,18 +37,33 @@ jobs:
       run: |
         # Get the list of branches (excluding main)
         #branches=$(git branch -r | grep 'origin/main' | sed 's/origin\///')
-        branches="dev test"
+        branches="dev"
         # Loop through each branch and merge main
         echo $pwd
         ls -lrt
         for branch in $branches; do
-          echo "$branch inside"
-          git checkout -b $branch
-          ls -lrt
-          echo "check out done"
-          git pull origin main
-          echo "pull done"
-          ls -lrt
-          git push origin $branch
-          echo "push done"
+          # echo "$branch inside"
+          # git checkout -b $branch
+          # ls -lrt
+          # echo "check out done"
+          # git pull origin main
+          # echo "pull done"
+          # ls -lrt
+          # git push origin $branch
+          # echo "push done"
+
+
+          # Create a branch for the pull request
+          git checkout -b pr-branch-$branch
+
+          # Merge changes from master
+          git pull origin master
+
+          # Push the changes and create a pull request
+          git push origin pr-branch-$branch
+
+          # Create pull request
+          gh pr create --base $branch --head pr-branch-$branch --title "Merge from master" --body "Automated pull request to merge changes from master."
+
+
         done
