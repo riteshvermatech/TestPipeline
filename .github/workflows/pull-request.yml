@@ -42,8 +42,13 @@ jobs:
         echo $pwd
         ls -lrt
         for branch in $branches; do
-          echo $branch
+          echo "$branch inside"
           git checkout $branch
+          ls -lrt
+          echo "check out done"
           git pull origin main
+          echo "pull done"
+          ls -lrt
           git push origin $branch
+          echo "push done"
         done
